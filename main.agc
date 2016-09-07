@@ -93,7 +93,7 @@ createsprite(1,GrayOverworld)
 setspriteanimation(1,16,32,16)
 SetSpritePosition(1,gray.x-8,gray.y-8)
 SetSpriteDepth(1,1)
-SetSpriteShape (GrayOverworld,2)
+SetSpriteShape (1,2)
 
 
 rem room 1 subroutine
@@ -172,9 +172,9 @@ endif
 rem this checks for collisions between the collision tiles
 rem this does not do anything yet :C
 for i=5000 to collisionindex
-if GetSpriteCollision (1, collisionindex-1 ) = 1
+if GetSpriteCollision (1, i ) = 1
 	Print("COllided with")
-	Print (collisionindex)
+	Print (i)
 endif
 
 next	

@@ -116,9 +116,9 @@ for buildy=0 to roomy
 		endif
 		if val(mid(room[buildy],buildx,1))=1
 			SetSpriteFrame(index,1)
-			SetSpriteShape (index, 2)
-			//createsprite(collisionindex,collision)
-			//SetSpriteColorAlpha(collisionindex,0)
+			createsprite(collisionindex,collision)
+			SetSpriteShape (collisionindex, 2)
+			SetSpriteColorAlpha(collisionindex,0)
 		endif
 		if val(mid(room[buildy],buildx,1))=8
 			SetSpriteFrame(index,8)
@@ -172,7 +172,10 @@ endif
 rem this checks for collisions between the collision tiles
 rem this does not do anything yet :C
 for i=5000 to collisionindex
-
+if GetSpriteCollision (1, collisionindex-1 ) = 1
+	Print("COllided with")
+	Print (collisionindex)
+endif
 
 next	
 

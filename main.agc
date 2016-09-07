@@ -160,12 +160,11 @@ SetViewOffset(gray.x-128,gray.y-120)
 
 rem this adjusts the y value of the sprite's position
 
-	
  
-if ( getrawkeystate(38) and (gray.y > -8) )
+if getrawkeystate(38)
 	dec gray.y			
 endif
-if (getrawkeystate(40) and (gray.y < 231) )
+if getrawkeystate(40)
 	inc gray.y
 endif
 

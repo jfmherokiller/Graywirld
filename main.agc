@@ -161,20 +161,15 @@ SetViewOffset(gray.x-128,gray.y-120)
 rem this adjusts the y value of the sprite's position
 
  
-if getrawkeystate(38)
-	dec gray.y			
-endif
-if getrawkeystate(40)
-	inc gray.y
-endif
 
 
 rem this checks for collisions between the collision tiles
 rem this does not do anything yet :C
 for i=5000 to collisionindex
 if GetSpriteCollision (1, i ) = 1
-	Print("COllided with")
-	Print (i)
+	
+else
+moveme(0,0,gray)
 endif
 
 next	
@@ -183,6 +178,17 @@ next
 	
 sync()
 loop
+
+function moveme(didihit,indexofhit,grayref ref as Entity)
+	
+if getrawkeystate(38)
+	dec grayref.y			
+endif
+if getrawkeystate(40)
+	inc grayref.y
+endif
+
+endfunction
 
 rem create the title
 Function RoughTitle()

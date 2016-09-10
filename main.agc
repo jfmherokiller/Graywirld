@@ -3,11 +3,13 @@
 // Created: 2016-03-04
 
 // set window properties
+screenwidth=256
+screenheight=240
 SetWindowTitle( "Graywirld" )
-SetWindowSize( 256*3, 240*3, 0 )
+SetWindowSize( screenwidth*3, screenheight*3, 0 )
 
 // set display properties
-SetVirtualResolution( 256, 240 )
+SetVirtualResolution( screenwidth, screenheight )
 SetOrientationAllowed( 1, 1, 1, 1 )
 
 rem ultimate test flag!!!
@@ -159,7 +161,12 @@ SetViewOffset(gray.x-128,gray.y-120)
 
 
 rem this adjusts the y value of the sprite's position
-
+if getrawkeystate(38) and (gray.y > 0)
+	dec gray.y			
+endif
+if getrawkeystate(40)and (gray.y < 217)
+	inc gray.y
+endif
  
 
 
@@ -181,12 +188,7 @@ loop
 
 function moveme(didihit,indexofhit,grayref ref as Entity)
 	
-if getrawkeystate(38)
-	dec grayref.y			
-endif
-if getrawkeystate(40)
-	inc grayref.y
-endif
+
 
 endfunction
 

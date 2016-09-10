@@ -142,11 +142,15 @@ rem this adjusts the y value of the sprite's position
 if getrawkeystate(38)
 	if moveme(collisionindex) = 0
 		dec gray.y	
+	else
+		inc gray.y
 	endif		
 endif
 if getrawkeystate(40)
 	if moveme(collisionindex) = 0
 		inc gray.y
+	else
+		dec gray.y
 	endif
 endif
  

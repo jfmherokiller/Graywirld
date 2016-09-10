@@ -1,5 +1,4 @@
-screenwidth=256
-screenheight=240
+
 
 rem setup player struct
 type Entity

@@ -4,6 +4,8 @@
 
 // set window properties
 #include "defines and such.agc"
+screenwidth=256
+screenheight=240
 SetWindowTitle( "Graywirld" )
 SetWindowSize( screenwidth*3, screenheight*3, 0 )
 

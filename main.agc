@@ -3,8 +3,7 @@
 // Created: 2016-03-04
 
 // set window properties
-screenwidth=256
-screenheight=240
+#include "defines and such.agc"
 SetWindowTitle( "Graywirld" )
 SetWindowSize( screenwidth*3, screenheight*3, 0 )
 
@@ -32,30 +31,7 @@ SetImageMagFilter (GrayOverworld,0)
 SetImageMinFilter (TileMapRoom1,0)
 SetImageMagFilter (TileMapRoom1,0)
 
-rem setup player struct
-type Entity
-	name as string
-	x as integer
-	y as integer
-	z as integer
-	savposx as integer
-	savposy as integer
-	savposz as integer
-	room as integer
-	
-	hp as integer
-	xp as integer
-	xpcap as integer
-	atk as integer
-	def as integer
-	mag as integer
-	spd as integer
-	
-	deathflag as integer
-	poisonflag as integer
-	paralyzeflag as integer
-	angerflag as integer
-endtype
+
 
 rem skip title to go to game!
 if UltimateTestFlag=1

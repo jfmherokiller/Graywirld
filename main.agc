@@ -147,16 +147,16 @@ print(sidecheck)
 
 
 rem this adjusts the x or y value of the sprite's position
-if getrawkeystate(KEY_UP)
+if (getrawkeystate(KEY_UP) AND NOT (sidecheck = 1))
 	dec gray.y	
 endif
-if getrawkeystate(KEY_DOWN)
+if (getrawkeystate(KEY_DOWN) AND NOT (sidecheck = 2))
 	inc gray.y
 endif
-if GetRawKeyState(KEY_RIGHT)
+if (GetRawKeyState(KEY_RIGHT) AND NOT (sidecheck =3))
 	inc gray.x
 endif
-if GetRawKeyState(KEY_LEFT)
+if (GetRawKeyState(KEY_LEFT) AND NOT (sidecheck =4))
 	dec gray.x
 endif
 
@@ -187,22 +187,22 @@ function collisioncheck(indexToCheck)
 	//if a collision is not detected then exit function
 	if not (GetSpriteCollision (1, indexToCheck ) = 1)
 		exitfunction hitside
-	endif	
-		//bottom check bottom = 2
-		if (GetSpriteY(indexToCheck) - gray.y +8) = 32
-			hitside = 2
-		endif
+	endif
 		//top check top = 1
 		if (GetSpriteY(indexToCheck) - gray.y +8) = -16
 			hitside = 1
 		endif
-		//left check left = 3
-		if (GetSpriteX(indexToCheck) - gray.x +8) = -16
-			hitside=3
+		//bottom check bottom = 2
+		if (GetSpriteY(indexToCheck) - gray.y +8) = 32
+			hitside = 2
 		endif
-		//right check right = 4
+		//right check right = 3
 		if(GetSpriteX(indexToCheck) - gray.x +8) = 16
-			hitside = 4
+			hitside =3
+		endif
+		//left check left = 4
+		if (GetSpriteX(indexToCheck) - gray.x +8) = -16
+			hitside=4
 		endif
 endfunction hitside
 

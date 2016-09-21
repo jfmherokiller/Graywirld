@@ -63,7 +63,7 @@ rem createsprite(2,TestMarker)
 rem gray sprite
 
 rem setup gray entity
-gray as Entity
+global gray as Entity
 gray.x=128
 gray.y=120
 gray.z=20
@@ -138,29 +138,28 @@ SetViewOffset(gray.x-128,gray.y-120)
 
 
 
-
+rem this checks for collisions between the collision tiles and possibly future entities
 gosub collisioncheck
-print(didithit)
-print(hitfloat)
+print(sidecheck)
 
 
-rem this adjusts the y value of the sprite's position
-if getrawkeystate(38)
+
+
+
+rem this adjusts the x or y value of the sprite's position
+if getrawkeystate(KEY_UP)
 	dec gray.y	
 endif
-if getrawkeystate(40)
+if getrawkeystate(KEY_DOWN)
 	inc gray.y
 endif
-if GetRawKeyState(39)
+if GetRawKeyState(KEY_RIGHT)
 	inc gray.x
 endif
-if GetRawKeyState(37)
+if GetRawKeyState(KEY_LEFT)
 	dec gray.x
 endif
 
-
-rem this checks for collisions between the collision tiles
-rem this does not do anything yet :C
 
 
 
@@ -172,21 +171,40 @@ loop
 
 collisioncheck:
 
+//wall check loop
 for i=5000 to collisionindex
-	if GetSpriteCollision (1, i ) = 1
-		didithit = 1
-		hitfloat = GetSpriteDistance(1,i)
-		hitx1=GetSpriteDistancePoint1X()-16
-		hity1=GetSpriteDistancePoint1Y()-16
-		hitx2=GetSpriteDistancePoint2X()-16
-		hity2=GetSpriteDistancePoint2Y()-16
+sidecheck = collisioncheck(i)
+	//if a hit is found then exit for loop
+	if(not sidecheck = 0)
 		exit
-	else
-		didithit = 0
 	endif
 next
 
 return
+
+function collisioncheck(indexToCheck)
+	hitside =0
+	//if a collision is not detected then exit function
+	if not (GetSpriteCollision (1, indexToCheck ) = 1)
+		exitfunction hitside
+	endif	
+		//bottom check bottom = 2
+		if (GetSpriteY(indexToCheck) - gray.y +8) = 32
+			hitside = 2
+		endif
+		//top check top = 1
+		if (GetSpriteY(indexToCheck) - gray.y +8) = -16
+			hitside = 1
+		endif
+		//left check left = 3
+		if (GetSpriteX(indexToCheck) - gray.x +8) = -16
+			hitside=3
+		endif
+		//right check right = 4
+		if(GetSpriteX(indexToCheck) - gray.x +8) = 16
+			hitside = 4
+		endif
+endfunction hitside
 
 rem create the title
 Function RoughTitle()

@@ -24,3 +24,10 @@ type Entity
 	paralyzeflag as integer
 	angerflag as integer
 endtype
+
+// keyboard constants
+
+#constant    KEY_LEFT         37
+#constant    KEY_UP           38
+#constant    KEY_RIGHT        39
+#constant    KEY_DOWN         40

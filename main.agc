@@ -83,7 +83,7 @@ rem be sure to add if statements depending on the area
 rem generate the tilemap
 
 index=500 rem sprite index
-collisionindex=5000 rem colission index
+global collisionArray as integer[] rem colission array it contains the sprite indexes with collision enabled
 
 
 rem master level building algorithm.
@@ -96,18 +96,15 @@ for buildy=0 to roomy
 		endif
 		if val(mid(room[buildy],buildx,1))=1
 			SetSpriteFrame(index,1)
-			createsprite(collisionindex,collision)
-			SetSpriteShape (collisionindex, 2)
-			SetSpriteColorAlpha(collisionindex,0)
+			collisionArray.insert(index)
+			SetSpriteShape (index, 2)
 		endif
 		if val(mid(room[buildy],buildx,1))=8
 			SetSpriteFrame(index,8)
 		endif
 		
 		SetSpritePosition(index,(buildx*8)-16,(buildy*16))
-		SetSpritePosition(collisionindex,(buildx*8)-16,(buildy*16))
 		inc index
-		inc collisionindex
 		
 	next
 	print("")
@@ -172,8 +169,8 @@ loop
 collisioncheck:
 
 //wall check loop
-for i=5000 to collisionindex
-sidecheck = collisioncheck(i)
+for i=0 to collisionArray.length
+sidecheck = collisioncheck(collisionArray[i])
 	//if a hit is found then exit for loop
 	if(not sidecheck = 0)
 		exit
